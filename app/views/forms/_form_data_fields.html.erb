@@ -1,0 +1,47 @@
+<tr class='nested-field-group'>
+  <%= f.hidden_field :id %>
+  <td><%= f.object.data['fullName'] %></td>
+  <td>
+    <%= f.object.data['birthday'].present? ?
+        Time.parse(f.object.data['birthday']).strftime("%d/%m/%Y") :
+        'Não informado'
+    %>
+  </td>
+  <td><%= f.object.data['cpf'] %></td>
+  <td><%= f.object.data['email'] %></td>
+  <td><%= f.object.data['phone'] %></td>
+  <td><%= f.object.data['city'] %></td>
+  <td>
+    <%= f.object.data['leader'].present? ?
+        f.object.data['leader'] :
+        "Não informado"
+    %>
+  </td>
+  <td><%= (f.object.data['privateRoom'].present? && f.object.data['privateRoom'] == true) ?
+          "<i class='glyphicon glyphicon-ok' style= 'color: green'></i>".html_safe :
+          "<i class='glyphicon glyphicon-remove' style= 'color: red'></i>".html_safe %>
+  </td>
+  <td>
+    <%= (f.object.data['specialNeed'].present? && f.object.data['specialNeed'] == true) ?
+          "<i class='glyphicon glyphicon-ok' style= 'color: green'></i>".html_safe :
+          "<i class='glyphicon glyphicon-remove' style= 'color: red'></i>".html_safe %>
+    </td>
+  <td>
+    <%= f.object.data['specialNeedDetails'].present? ?
+        f.object.data['specialNeedDetails'] : ''
+    %>
+    </td>
+  <td>
+    <% value = f.object.present? ? f.object.created_at.strftime("%d/%m/%Y %H:%M") : nil %>
+    <%= value %>
+  </td>
+
+  <!-- <td>
+    <%= f.hidden_field :_destroy, class: 'destroy-field' %>
+
+    <%#= link_to(
+    '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe ,
+    '#', class: 'destroy-link btn btn-default'
+    ) %>
+  </td> -->
+</tr>

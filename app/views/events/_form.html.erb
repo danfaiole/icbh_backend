@@ -1,0 +1,101 @@
+<div class="box box-primary">
+  <div class="box-body">
+    <%= simple_form_for(@event) do |f| %>
+      <%= f.error_notification %>
+
+      <%= div_col_tag('6') do %>
+        <% value = f.object.start_date.present? ? f.object.start_date.strftime("%d/%m/%Y %H:%M") : "" %>
+        <%= f.input :start_date,
+              as: :string,
+              label: 'Data de início',
+              placeholder: 'dd/mm/aaaa HH:MM',
+              input_html: { value: value },
+              disabled: action_name == 'show'
+        %>
+      <% end %>
+
+      <%= div_col_tag('6') do %>
+        <% value = f.object.end_date.present? ? f.object.end_date.strftime("%d/%m/%Y %H:%M") : "" %>
+        <%= f.input :end_date,
+              as: :string,
+              label: 'Data de fim',
+              placeholder: 'dd/mm/aaaa HH:MM',
+              input_html: { value: value },
+              disabled: action_name == 'show'
+        %>
+      <% end %>
+
+      <%= div_col_tag('10') do %>
+        <%= f.input :title, label: 'Título', disabled: action_name == 'show' %>
+      <% end %>
+
+      <%= div_col_tag('2') do %>
+        <%= f.input :color, label: 'Cor do evento', disabled: action_name == 'show' %>
+      <% end %>
+
+      <%= div_col_tag('6') do %>
+        <%= f.input :description, label: 'Descrição do evento', disabled: action_name == 'show' %>
+      <% end %>
+
+      <%= div_col_tag('6') do %>
+        <%= f.input :location, label: 'Localização do evento', disabled: action_name == 'show' %>
+      <% end %>
+
+      <%= div_col_tag('12') do %>
+        <div class="box box-solid box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Agendar notificação</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+              </button>
+              <%= add_fields_for(
+                '<i class="fa fa-plus-circle"></i>', f, :event_notifications,
+                {
+                  partial_name: 'shared/notification_fields',
+                  class: "btn btn-box-tool"
+                }
+              ) if action_name != 'show'
+              %>
+            </div>
+          </div>
+          <div class="box-body" id="event_notification_fields">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Título</th>
+                <th>Mensagem</th>
+                <th>Dia/Hora</th>
+                <% if action_name != 'show' %>
+                  <th>Apagar</th>
+                <% end %>
+              </tr>
+              </thead>
+              <tbody>
+                <%= f.fields_for(:event_notifications) do |notification| %>
+                  <%= render partial: 'shared/notification_fields', locals: {f: notification} %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="box-footer">
+        <% if action_name != 'show' %>
+          <%= f.submit('Salvar', class: 'btn btn-success') %>
+          <%= link_to 'Voltar', events_path, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to('Editar evento', edit_event_path(@event), class: 'btn btn-primary') if action_name == 'show' %>
+          <%= link_to('Apagar evento', @event, method: :delete, data: { confirm: 'Tem certeza que deseja deletar o registro?' }, class: 'btn btn-danger') if action_name == 'show' %>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+
+
+</div>
+
+

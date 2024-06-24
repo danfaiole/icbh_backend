@@ -1,0 +1,32 @@
+<section class="content-header">
+  <h1>Notícias</h1>
+  <%= breadcrumb_links %>
+</section>
+
+<section class='content'>
+  <%= div_col_tag('12') do %>
+    <table id="news_index_table" data-source="<%= news_index_path(format: :json) %>" class='table table-striped'>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título da Notícia</th>
+          <th>Autor</th>
+          <th>Publicado?</th>
+          <th>Publicado em</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</section>

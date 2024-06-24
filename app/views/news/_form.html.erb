@@ -1,0 +1,88 @@
+<div class="box box-primary">
+  <div class="box-body">
+    <%= simple_form_for(@news) do |f| %>
+      <%= f.error_notification %>
+
+      <%= div_col_tag('12') do %>
+        <%= f.input :title, label: "Título da notícia", disabled: action_name == 'show' %>
+      <% end %>
+
+      <%= div_col_tag('12') do %>
+        <%= f.cktext_area :body, placeholder: 'Digite aqui a notícia', id: 'news_body_editor', ckeditor: { language: 'pt-BR'}, disabled: action_name == 'show' %>
+      <% end %>
+
+      <%= div_col_tag('4') do %>
+        <%= f.input :title_image, as: :file, value: f.object.title_image, label: 'Foto de capa', disabled: action_name == 'show' %>
+      <% end %>
+
+      <%#= div_col_tag('3') do %>
+        <%#= image_tag f.object.title_image.url(:thumb) %>
+      <%# end %>
+
+      <%= div_col_tag('3') do %>
+        <%= f.input :tags, disabled: action_name == 'show' %>
+      <% end %>
+
+      <%= div_col_tag('3') do %>
+        <% if action_name == 'show' %>
+          <%= f.input :published, as: :select, label: "Publicado?", disabled: action_name == 'show' %>
+        <% else %>
+          <%= f.input :published, as: :select, label: "Publicado?", include_blank: false %>
+        <% end %>
+      <% end %>
+
+      <%= div_col_tag('12') do %>
+        <div class="box box-solid box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Agendar notificação</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+              </button>
+              <%= add_fields_for(
+                '<i class="fa fa-plus-circle"></i>', f, :news_notification,
+                {
+                  partial_name: 'shared/notification_fields',
+                  class: "btn btn-box-tool"
+                }
+              ) if action_name != 'show'
+              %>
+            </div>
+          </div>
+          <div class="box-body" id="news_notification_fields">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Título</th>
+                <th>Mensagem</th>
+                <th>Dia/Hora</th>
+                <% if action_name != 'show' %>
+                  <th>Apagar</th>
+                <% end %>
+              </tr>
+              </thead>
+              <tbody>
+                <%= f.fields_for(:news_notification) do |notification| %>
+                  <%= render partial: 'shared/notification_fields', locals: {f: notification} %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+
+      <%= div_col_tag('12') do %>
+      <div class="box-footer">
+        <% if action_name != 'show' %>
+          <%= f.submit('Salvar', class: 'btn btn-success') %>
+          <%= link_to 'Voltar', news_index_path, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to('Editar notícia', edit_news_path(@news), class: 'btn btn-primary') if action_name == 'show' %>
+        <% end %>
+      </div>
+      <% end %>
+
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<section class="content-header">
+  <h1>Arquivos</h1>
+  <%= breadcrumb_links %>
+</section>
+
+<%= div_col_tag('12') do %>
+  <table id="downloads_index_table" data-source="<%= downloads_path(format: :json) %>" class='table table-striped'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome do arquivo</th>
+        <th>Descrição do arquivo</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

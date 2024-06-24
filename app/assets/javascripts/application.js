@@ -1,0 +1,12 @@
+//= require jquery
+//= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require turbolinks
+//= require plugins/bootstrap-datepicker/bootstrap-datepicker.min.js
+//= require plugins/bootstrap-datepicker/bootstrap-datepicker.pt-BR.min.js
+//= require bootstrap-datetimepicker
+//= require plugins/bootstrap-colorpicker.min.js
+//= require ckeditor/init
+//= require app.min.js
+//= require_tree .

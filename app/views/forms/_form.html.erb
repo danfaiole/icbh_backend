@@ -1,0 +1,107 @@
+<div class="box box-primary">
+  <div class="box-body">
+    <%= simple_form_for(@form) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= div_col_tag('12') do %>
+          <%= f.input :title, label: "Título", disabled: action_name == 'show' %>
+        <% end %>
+
+        <%= div_col_tag('12') do %>
+          <%= f.cktext_area :help_text, placeholder: 'Digite aqui as informações do retiro', id: 'help_text_box', ckeditor: { language: 'pt-BR'}, disabled: action_name == 'show' %>
+        <% end %>
+
+        <%= div_col_tag('2') do %>
+          <%= f.input :active, label: "Ativo?", disabled: action_name == 'show' %>
+        <% end %>
+
+        <%= div_col_tag('5') do %>
+          <% value = f.object.start_date.present? ? f.object.start_date.strftime("%d/%m/%Y") : "" %>
+          <%= f.input :start_date,
+                as: :string,
+                label: 'Data de início',
+                placeholder: 'dd/mm/aaaa',
+                input_html: { value: value },
+                disabled: action_name == 'show'
+          %>
+        <% end %>
+
+        <%= div_col_tag('5') do %>
+          <% value = f.object.end_date.present? ? f.object.end_date.strftime("%d/%m/%Y") : "" %>
+          <%= f.input :end_date,
+                as: :string,
+                label: 'Data de fim',
+                placeholder: 'dd/mm/aaaa',
+                input_html: { value: value },
+                disabled: action_name == 'show'
+          %>
+        <% end %>
+      </div>
+
+      <%= div_col_tag('12') do %>
+        <% if action_name == 'show' || action_name == 'edit' %>
+          <div class="box box-solid box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Registros</h3>
+
+              <div class="box-tools pull-right">
+                <% if f.object.id.present? %>
+                  <%= link_to(
+                    '<i class="fa fa-file-excel-o" aria-hidden="true"></i>'.html_safe,
+                    form_path(f.object.id, format: :xlsx),
+                    class: 'btn btn-box-tool',
+                    data: {
+                      toggle: 'tooltip',
+                      placement: 'top',
+                      title: 'Download em XLSX'
+                    }
+                  )
+                  %>
+                <% end %>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                  <i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body" style="overflow-x: auto">
+              <table class="table table-hover" id="form_data_table">
+                <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Aniversário</th>
+                  <th>CPF</th>
+                  <th>E-mail</th>
+                  <th>Telefone</th>
+                  <th>Cidade</th>
+                  <th>Líder</th>
+                  <th>Suíte</th>
+                  <th>Necessidades Esp?</th>
+                  <th>Qual?</th>
+                  <th>Data cadastro</th>
+                  <!-- <th>Apagar</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                  <%= f.fields_for(:form_data) do |data| %>
+                    <%= render partial: 'form_data_fields', locals: {f: data} %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="box-footer">
+        <% if action_name != 'show' %>
+          <%= f.submit('Salvar', class: 'btn btn-success') %>
+          <%= link_to 'Voltar', forms_path, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to('Editar inscrição', edit_form_path(@form), class: 'btn btn-primary') if action_name == 'show' %>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

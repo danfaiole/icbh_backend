@@ -1,0 +1,114 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+      <li class="header">MENU PRINCIPAL</li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-calendar"></i> <span>Eventos</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+            <small class="label pull-right bg-blue"><%= events_counter_helper %></small> <!-- Criar tabela com as notificações -->
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <%= link_to(events_path) do %>
+              <i class="fa fa-calendar"></i> Calendário de eventos
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(new_event_path) do %>
+              <i class="fa fa-calendar-plus-o"></i> Criar evento
+            <% end %>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-newspaper-o"></i> <span>Notícias</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <%= link_to(news_index_path) do %>
+              <i class="fa fa-list"></i> Todas as notícias
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(new_news_path) do %>
+              <i class="fa fa-plus-circle"></i> Criar notícia
+            <% end %>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-cloud-download"></i> <span>Downloads</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <%= link_to(downloads_path) do %>
+              <i class="fa fa-list"></i> Todos os downloads
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(new_download_path) do %>
+              <i class="fa fa-upload"></i> Enviar arquivo
+            <% end %>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-pencil-square-o"></i> <span>Formulários para eventos</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <%= link_to(forms_path) do %>
+              <i class="fa fa-list"></i> Todos formulários
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(new_form_path) do %>
+              <i class="fa fa-plus-circle"></i> Novo formulário
+            <% end %>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-film"></i> <span>Vídeos</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <%= link_to(videos_path) do %>
+              <i class="fa fa-list"></i> Todos os vídeos
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(new_video_path) do %>
+              <i class="fa fa-plus-circle"></i> Novo vídeo
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+
+<div class="control-sidebar-bg"></div>

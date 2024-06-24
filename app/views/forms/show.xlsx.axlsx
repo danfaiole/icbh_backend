@@ -1,0 +1,33 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Registros") do |sheet|
+  sheet.add_row([
+    "Nome",
+    "Aniversário",
+    "CPF",
+    "E-mail",
+    "Telefone",
+    "Cidade",
+    "Líder",
+    "Suíte?",
+    "Necessidades Especiais?",
+    "Qual?",
+    "Data Cadastro"
+  ])
+
+  @form.form_data.each do |form_data|
+    sheet.add_row([
+      form_data.data['fullName'],
+      Time.parse(form_data.data['birthday']).strftime("%d/%m/%Y"),
+      form_data.data['cpf'],
+      form_data.data['email'],
+      form_data.data['phone'],
+      form_data.data['city'],
+      form_data.data['leader'],
+      form_data.data['privateRoom'] == true ? 'Sim' : 'Não',
+      form_data.data['specialNeed'] == true ? 'Sim' : 'Não',
+      form_data.data['specialNeedDetails'].present? ? form_data.data['specialNeedDetails'] : '',
+      form_data.created_at.strftime("%d/%m/%Y %H:%M")
+    ])
+  end
+end

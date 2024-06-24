@@ -1,0 +1,32 @@
+<section class="content-header">
+  <h1>Vídeos</h1>
+  <%= breadcrumb_links %>
+</section>
+
+<section class='content'>
+  <%= div_col_tag('12') do %>
+    <table id="videos_index_table" data-source="<%= videos_path(format: :json) %>" class='table table-striped'>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Publicado?</th>
+          <th>Publicado em</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</section>

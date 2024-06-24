@@ -1,0 +1,12 @@
+development:
+  email_login: email@email.com
+  email_senha: email_password
+  url_cliente: http://localhost:3000
+
+production:
+  secret_key: secret
+  url_cliente: http://host_site
+  host_cliente: host_site
+  devise_secret_key: secret
+  email_login: email@email.com
+  email_senha: email_password

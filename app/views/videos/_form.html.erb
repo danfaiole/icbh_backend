@@ -1,0 +1,40 @@
+<div class="box box-primary">
+  <div class="box-body">
+    <%= simple_form_for(@video) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= div_col_tag('12') do %>
+          <%= f.input :url, label: "URL (Youtube)", disabled: action_name == 'show' %>
+        <% end %>
+
+        <%= div_col_tag('6') do %>
+          <%= f.input :title, label: "Título", disabled: action_name == 'show' %>
+        <% end %>
+
+        <%= div_col_tag('6') do %>
+          <%= f.input :description, label: "Descrição do vídeo", disabled: action_name == 'show' %>
+        <% end %>
+
+        <%= div_col_tag('6') do %>
+          <%= f.input :thumbnail, as: :file, label: "Capa", disabled: action_name == 'show' %>
+        <% end %>
+
+        <%= div_col_tag('3') do %>
+          <%= f.input :published, as: :select, label: "Publicado?", include_blank: false, disabled: action_name == 'show' %>
+        <% end %>
+      </div>
+
+      <%= div_col_tag('12') do %>
+        <div class="box-footer">
+          <% if action_name != 'show' %>
+            <%= f.submit('Salvar', class: 'btn btn-success') %>
+            <%= link_to 'Voltar', videos_path, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to('Editar vídeo', edit_video_path(@video), class: 'btn btn-primary') if action_name == 'show' %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
